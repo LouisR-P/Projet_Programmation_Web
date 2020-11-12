@@ -1,0 +1,26 @@
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">id</th>
+            <th scope="col">Email</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Numéro de téléphone</th>
+            <th scope="col">Licence</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let utilisateur of utilisateurs">
+            <td>{{ utilisateur.id }}</td>
+            <td><a href="mailto:{{ utilisateur.email }}">{{ utilisateur.email }}</a></td>
+            <td>{{ utilisateur.nom }}</td>
+            <td>{{ utilisateur.prenom }}</td>
+            <td>{{ utilisateur.numero }}</td>
+            <td>{{ utilisateur.licence }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

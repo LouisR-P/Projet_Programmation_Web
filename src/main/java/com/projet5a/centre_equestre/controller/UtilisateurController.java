@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.Optional;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class UtilisateurController {
 
@@ -34,11 +35,10 @@ public class UtilisateurController {
         return utilisateurRepository.findById(id);
     }
 
-    @PostMapping("/inscription")
-    public @ResponseBody String inscrireUtilisateur(@RequestBody Utilisateur inscrireUtilisateur) throws IOException {
+    @PostMapping("/utilisateurs")
+    public @ResponseBody void inscrireUtilisateur(@RequestBody Utilisateur inscrireUtilisateur) throws IOException {
         inscrireUtilisateur.setMotDePasse(passwordEncoder().encode(inscrireUtilisateur.getMotDePasse()));
         utilisateurRepository.save(inscrireUtilisateur);
-        return "Utilisateur inscrit avec l'adresse mail suivante : " + inscrireUtilisateur.getEmail();
     }
 
     @DeleteMapping("/suppressionUtilisateur/{id}")

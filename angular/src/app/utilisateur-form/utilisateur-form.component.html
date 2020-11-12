@@ -1,0 +1,92 @@
+<div class="card my-5">
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" #utilisateurForm="ngForm">
+
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input type="text" [(ngModel)]="utilisateur.email" 
+            class="form-control" 
+            id="email" 
+            name="email"
+            #email="ngModel"
+            required email>
+          <span class="text-danger"
+              *ngIf="email.touched && email.errors?.required">
+              Veuillez entrer votre adresse email
+          </span>
+          <span class="text-danger" *ngIf="email.touched && email.errors?.email">
+            Veuillez entrer une adresse email valide
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="motDePasse">Mot de passe *</label>
+          <input type="text" [(ngModel)]="utilisateur.motDePasse" 
+            class="form-control" 
+            id="motDePasse" 
+            name="motDePasse"
+            #motDePasse="ngModel"
+            required motDePasse>
+          <span class="text-danger"
+              *ngIf="motDePasse.touched && motDePasse.errors?.required">
+              Veuillez entrer un mot de passe
+          </span>
+        </div>
+ 
+        <div class="form-group">
+          <label for="nom">Nom *</label>
+          <input type="text" [(ngModel)]="utilisateur.nom" 
+            class="form-control" 
+            id="nom" 
+            name="nom"
+            #nom="ngModel"
+            required nom>
+            <span class="text-danger"
+              *ngIf="nom.touched && nom.errors?.required">
+              Veuillez entrer votre nom
+            </span>
+        </div>
+
+        <div class="form-group">
+          <label for="prenom">Prénom *</label>
+          <input type="text" [(ngModel)]="utilisateur.prenom" 
+            class="form-control" 
+            id="prenom" 
+            name="prenom"
+            #prenom="ngModel"
+            required prenom>
+            <span class="text-danger"
+              *ngIf="prenom.touched && prenom.errors?.required">
+              Veuillez entrer votre prenom
+            </span>
+        </div>
+
+        <div class="form-group">
+          <label for="numero">Numéro de téléphone *</label>
+          <input type="tel" [(ngModel)]="utilisateur.numero" 
+            class="form-control" 
+            id="numero" 
+            name="numero"
+            #numero="ngModel"
+            pattern="[0-9]{10}"
+            required numero>
+          <span class="text-danger" *ngIf="numero.touched && numero.errors">
+            Veuillez entrer un numéro de téléphone valide
+          </span>
+        </div>
+
+        <div class="form-group">
+          <label for="licence">Licence</label>
+          <input type="text" [(ngModel)]="utilisateur.licence" 
+            class="form-control" 
+            id="licence" 
+            name="licence">
+        </div>
+        
+
+        <button type="submit" [disabled]="!utilisateurForm.form.valid" 
+          class="btn btn-info">S'inscrire</button> <a> (*) Champs obligatoire</a>
+      </form>
+
+    </div>
+  </div>
