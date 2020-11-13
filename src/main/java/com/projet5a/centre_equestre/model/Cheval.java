@@ -13,12 +13,12 @@ public class Cheval {
     private Long id;
     private String nom;
     private String race;
-    private double poids;
-    private double taille;
+    private String poids;
+    private String taille;
 
     protected Cheval() {}
 
-    public Cheval(String nom, String race, double poids, double taille) {
+    public Cheval(String nom, String race, String poids, String taille) {
         this.nom = nom;
         this.race = race;
         this.poids = poids;
@@ -44,11 +44,11 @@ public class Cheval {
         return race;
     }
 
-    public double getPoids() {
+    public String getPoids() {
         return poids;
     }
 
-    public double getTaille() {
+    public String getTaille() {
         return taille;
     }
 
@@ -64,11 +64,11 @@ public class Cheval {
         this.race = race;
     }
 
-    public void setPoids(double poids) {
+    public void setPoids(String poids) {
         this.poids = poids;
     }
 
-    public void setTaille(double taille) {
+    public void setTaille(String taille) {
         this.taille = taille;
     }
 }
