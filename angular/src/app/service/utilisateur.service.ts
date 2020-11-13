@@ -1,22 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Utilisateur } from '../model/utilisateur';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+
+const API_URL = 'http://localhost:8080/api/role/';
  
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class UtilisateurService {
  
-  private utilisateursUrl: string;
- 
-  constructor(private http: HttpClient) {
-    this.utilisateursUrl = 'http://localhost:8080/utilisateurs';
+  constructor(private http: HttpClient) { }
+
+  getPublicContent(): Observable<any> {
+    return this.http.get(API_URL + 'all', { responseType: 'text' });
   }
- 
-  public findAll(): Observable<Utilisateur[]> {
-    return this.http.get<Utilisateur[]>(this.utilisateursUrl);
+
+  getUserBoard(): Observable<any> {
+    return this.http.get(API_URL + 'user', { responseType: 'text' });
   }
- 
-  public save(utilisateur: Utilisateur) {
-    return this.http.post<Utilisateur>(this.utilisateursUrl, utilisateur);
+
+  getModeratorBoard(): Observable<any> {
+    return this.http.get(API_URL + 'mod', { responseType: 'text' });
   }
+
+  getAdminBoard(): Observable<any> {
+    return this.http.get(API_URL + 'admin', { responseType: 'text' });
+  }
+
+
 }

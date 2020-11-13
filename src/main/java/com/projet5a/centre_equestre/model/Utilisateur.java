@@ -1,12 +1,14 @@
 package com.projet5a.centre_equestre.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Utilisateur {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;            // pas nullable ni vide (à ajouter dans le formulaire du front)
     private String email;       // pas nullable ni vide (à ajouter dans le formulaire du front)
     private String motDePasse;  // pas nullable ni vide (à ajouter dans le formulaire du front)
@@ -14,23 +16,27 @@ public class Utilisateur {
     private String prenom;      // pas nullable ni vide (à ajouter dans le formulaire du front)
     private String numero;      // pas nullable ni vide (à ajouter dans le formulaire du front)
     private String licence;
-    private String role;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(	name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
     public Utilisateur(){}
 
-    public Utilisateur(String email, String motDePasse, String nom, String prenom, String numero, String licence, String role){
+    public Utilisateur(String email, String motDePasse, String nom, String prenom, String numero, String licence){
         this.email = email;
         this.motDePasse = motDePasse;
         this.nom = nom;
         this.prenom = prenom;
         this.numero = numero;
         this.licence = licence;
-        this.role = role;
     }
 
     @Override
     public String toString() {
-        return String.format("Utilisateur[id=%d, email='%s', motDePasse='%s', nom='%s', prenom='%s', numero='%s', licence='%s', role='%s']",id, email, motDePasse, nom, prenom, numero, licence, role);
+        return String.format("Utilisateur[id=%d, email='%s', motDePasse='%s', nom='%s', prenom='%s', numero='%s', licence='%s', role='%s']",id, email, motDePasse, nom, prenom, numero, licence);
     }
 
     public Long getId() {
@@ -61,10 +67,6 @@ public class Utilisateur {
         return licence;
     }
 
-    public String getRole() {
-        return role;
-    }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -93,7 +95,12 @@ public class Utilisateur {
         this.licence = licence;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public Set<Role> getRoles() {
+        return roles;
     }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
 }
