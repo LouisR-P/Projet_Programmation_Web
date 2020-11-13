@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilisateurService } from '../service/utilisateur.service';
+import { RoleService } from '../service/role.service';
 
 @Component({
   selector: 'app-home',
@@ -10,10 +10,10 @@ export class HomeComponent implements OnInit {
 
   content: string;
 
-  constructor(private userService: UtilisateurService) { }
+  constructor(private roleService: RoleService) { }
 
   ngOnInit(): void {
-    this.userService.getPublicContent().subscribe(
+    this.roleService.getPublicContent().subscribe(
       data => {
         this.content = data;
       },

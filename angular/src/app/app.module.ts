@@ -17,7 +17,6 @@ import { BoardUserComponent } from "./board-user/board-user.component";
  
 import { authInterceptorProviders } from './helpers/auth.interceptor';
 
-
 @NgModule({
   declarations: [
     AppComponent,

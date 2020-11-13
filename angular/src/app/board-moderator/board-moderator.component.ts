@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilisateurService } from '../service/utilisateur.service';
+import { RoleService } from '../service/role.service';
 
 @Component({
   selector: 'app-board-moderator',
@@ -10,10 +10,10 @@ export class BoardModeratorComponent implements OnInit {
 
   content: string;
 
-  constructor(private userService: UtilisateurService) { }
+  constructor(private roleService: RoleService) { }
 
   ngOnInit(): void {
-    this.userService.getModeratorBoard().subscribe(
+    this.roleService.getModeratorBoard().subscribe(
       data => {
         this.content = data;
       },

@@ -7,7 +7,7 @@ const API_URL = 'http://localhost:8080/api/role/';
 @Injectable({
   providedIn: 'root'
 })
-export class UtilisateurService {
+export class RoleService {
  
   constructor(private http: HttpClient) { }
 

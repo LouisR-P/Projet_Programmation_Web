@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UtilisateurService } from '../service/utilisateur.service';
+import { RoleService } from '../service/role.service';
+import { AdminService } from "../service/admin.service";
 
 @Component({
   selector: 'app-board-admin',
@@ -9,18 +10,27 @@ import { UtilisateurService } from '../service/utilisateur.service';
 export class BoardAdminComponent implements OnInit {
 
   content: string;
+  utilisateurs: string;
 
-  constructor(private userService: UtilisateurService) { }
+  constructor(private roleService: RoleService, private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.userService.getAdminBoard().subscribe(
+    this.roleService.getAdminBoard().subscribe(
       data => {
         this.content = data;
       },
       err => {
         this.content = JSON.parse(err.error).message;
-      }
-    );
+      },
+    ) 
+    this.adminService.utilisateurs().subscribe(
+        data => {
+          this.utilisateurs = data;
+        },
+        err => {
+          this.content = JSON.parse(err.error).message;
+        }
+      );
   }
 
 }

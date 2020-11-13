@@ -30,6 +30,6 @@ public class RoleController {
 	@GetMapping("/admin")
 	@PreAuthorize("hasRole('ADMIN')")
 	public String adminAccess() {
-		return "Contenu admnistrateur";
+		return "Contenu administrateur";
 	}
 }
